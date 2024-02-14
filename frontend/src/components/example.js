@@ -15,6 +15,7 @@ const ExampleComponent = () => {
     <div>
       <p>Context value: {myState}</p>
       <button onClick={handleButtonClick}>Update Context</button>
+ 
     </div>
   );
 };

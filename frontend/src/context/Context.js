@@ -1,24 +1,38 @@
-// MyContext.js
-import React, { createContext, useState } from 'react';
+import React, { createContext, useState,useEffect } from 'react';
 
-// Create a context object
 export const MyContext = createContext();
 
-// Create a provider component
 export const MyContextProvider = ({ children }) => {
-  // State to manage within the context
   const [myState, setMyState] = useState(0);
+  const [data, setData] = useState(null);
+  const [isLoading, setIsLoading] = useState(true);
 
-  // Define any functions or logic you need to update the state
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        // Fetch data from the server
+        const response = await fetch('http://localhost:4000/run-command?cmd=echo%20great');
+        const fetchedData = await response.text();
+        setData(fetchedData);
+        setIsLoading(false);
+      } catch (error) {
+        console.error('Error fetching data:', error);
+        setIsLoading(false);
+      }
+    };
+
+    fetchData();
+  }, []);
+
   const incrementCount = () => {
     setMyState(myState + 1);
   };
 
-  // Value object to provide to consuming components
   const contextValue = {
     myState,
     incrementCount,
-    // Add any other values or functions you want to provide
+    data,
+    isLoading,
   };
 
   return (

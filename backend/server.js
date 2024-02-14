@@ -1,8 +1,10 @@
 // index.js
 const express = require('express');
+const cors = require('cors'); // Import the cors middleware
 const app = express();
 const PORT = process.env.PORT || 4000;
 
+app.use(cors());
 // Example route to run command
 app.get('/run-command', (req, res) => {
     const { cmd } = req.query;

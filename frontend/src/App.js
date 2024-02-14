@@ -2,7 +2,7 @@ import logo from './logo.svg';
 import './App.css';
 import { MyContextProvider } from './context/Context'; // Import your context provider
 import ExampleComponent from './components/example';
-
+import FetchComponent from './components/fetch';
 
 function App() {
   return (
@@ -22,6 +22,7 @@ function App() {
             Learn React
           </a>
           <ExampleComponent/>
+          <FetchComponent/>
         </header>
 
        
